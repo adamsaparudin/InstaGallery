@@ -17,6 +17,12 @@ router.get('/login', function(req, res, next) {
   res.send("This shit is login page")
 })
 
-router.post('/login', userController.login)
+// This shit is doing different things. from passport authentication. set jwt and check jwt, req.token and other shit is okay.
+app.post('/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    
+    res.redirect('/');
+  });
 
 module.exports = router;

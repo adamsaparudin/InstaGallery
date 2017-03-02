@@ -4,6 +4,7 @@ let adminController = require('../controllers/admin')
 
 /* GET home page. */
 // redirect to fucking login page if not authenticated yet.
+// always pass fucking message when shit is coming. just to make sure things is okay
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });

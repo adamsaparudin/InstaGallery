@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
+// always pass fucking message when shit is coming. just to make sure things is okay
 
 // redirect to login page if not authenticated, redirect to profile details if already authenticated.
 router.get('/', function(req, res, next) {
