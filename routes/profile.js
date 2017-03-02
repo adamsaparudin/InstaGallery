@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
+
+// redirect to login page if not authenticated, redirect to profile details if already authenticated.
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });

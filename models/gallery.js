@@ -5,7 +5,7 @@ let gallerySchema = ({
   title: String,
   imageUrl: String,
   story: String,
-  uploader: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  uploader: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, {
   timestamps: true
 })
