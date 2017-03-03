@@ -23,6 +23,20 @@ router.get('/register/instagram', function(req, res, next) {
 
 })
 
+router.get('/auth/facebook', passport.authenticate('facebook'));
+
+router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+router.get('/auth/instagram',
+  passport.authenticate('instagram-token'),
+  function(req, res){
+    // The request will be redirected to Instagram for authentication, so this
+    // function will not be called.
+  });
+
 // This shit is doing different things. from passport authentication. set jwt and check jwt, req.token and other shit is okay.
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),

@@ -3,9 +3,9 @@ const db = require('../db');
 
 let userSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
-  password: {type: String, required: true},
+  password: {type: String},
   email: String,
-  firstname: {type: String, required: true},
+  firstname: {type: String},
   lastname: String,
   facebookID: String,
   instagramID: String,
