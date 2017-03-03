@@ -7,8 +7,6 @@ let userSchema = new mongoose.Schema({
   email: String,
   firstname: {type: String, required: true},
   lastname: String,
-  Dob: Date,
-  address: String,
   facebookID: String,
   role: {type: String, default: 'user'},
   gallery: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gallery' }]
