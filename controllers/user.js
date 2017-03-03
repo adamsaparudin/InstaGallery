@@ -30,17 +30,17 @@ function upload(req, res, next) {
   if(!req.files) {res.send("Please upload your fucking file")}
   // input type is file with name in the end
   let file = req.files.sampleFiles
-  Gallery.create({
+  gallery.create({
     title: req.body.title,
     story: req.body.story,
     uploader: req.user._id
-  }, function(err, gallery) {
+  }, function(err, galleries) {
     if(err) console.log(err);
     else {
-      file.mv(`/public/uploadUser/${gallery._id}.jpg`, function(error) {
+      file.mv(`/public/uploadUser/${galleries._id}.jpg`, function(error) {
         if(error) console.log("error from upload User", error);
         else {
-          Gallery.update({_id: gallery._id}, {imageUrl: `/public/uploadUser/${gallery._id}.jpg`})
+          Gallery.update({_id: galleries._id}, {imageUrl: `/public/uploadUser/${galleries._id}.jpg`})
           next()
         }
       })

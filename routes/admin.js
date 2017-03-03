@@ -67,9 +67,17 @@ router.post('/user/:id', function(req, res, next){
   })
 })
 
-router.post('/user/:id/delete', function(req, res, next){
-  user.findById(req.params.id).then(function(user){
-    res.send('admin edit user page')
+router.get('/user/:id/delete', function(req, res, next){
+  user.findById(req.params.id, function(err, yuser){
+    if(err){return next(err)}
+    if(!user){return res.send(404)}
+    yuser.remove(function(err){
+      if (err) {
+        return next(err)
+      }else {
+        return res.send("User has been deleted")
+      }
+    })
   })
 })
 
