@@ -27,6 +27,6 @@ function login(req, res, next) {
 //Login facebook function loginFacebook, match it with facebookID
 
 module.exports = {
-  register: register,
+  // register: register,
   login: login
 }

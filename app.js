@@ -10,6 +10,7 @@ const passport = require('passport');
 
 var index = require('./routes/index');
 var profile = require('./routes/profile');
+var admin = require('./routes/admin')
 
 var app = express();
 
@@ -31,6 +32,7 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/profile', profile);
+app.use('/admin',admin)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
