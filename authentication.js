@@ -1,13 +1,17 @@
 const passport = require('passport');
-const Strategy = require('passport-local').Strategy;
+const jwt = require('jsonwebtoken');
+const User = require('./models/user')
+const LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new Strategy(
-  function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
+passport.use(new LocalStrategy({passReqToCallback: true},
+  function(req, username, password, cb) {
+    User.findOne({username: username}, function(err, user) {
+      if (err) { return cb(err) }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
-      // var token = jwt.sign({ foo: 'bar' }, 'This Shit is a fucking tokens');
+      user.password = null
+      var token = jwt.sign({ user: user }, 'This Shit is a fucking tokens');
+      user.token = token
       return cb(null, user);
     });
   }));
@@ -17,7 +21,7 @@ passport.use(new Strategy(
   });
 
   passport.deserializeUser(function(id, cb) {
-    db.users.findById(id, function (err, user) {
+    User.findById(id, function (err, user) {
       if (err) { return cb(err); }
       cb(null, user);
     });

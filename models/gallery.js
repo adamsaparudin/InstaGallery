@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = require('../db/mongo');
+const db = require('../db');
 
 let gallerySchema = ({
   title: String,
