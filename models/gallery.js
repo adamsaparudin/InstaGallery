@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
+let Schema = mongoose.Schema
 const db = require('../db');
 
 let gallerySchema = ({
-  title: String,
+  title: {type: String, required: true},
   imageUrl: String,
   story: String,
-  uploader: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-}, {
-  timestamps: true
+  uploadAt: Date,
+  uploader: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 
 let Gallery = mongoose.model('Gallery', gallerySchema)

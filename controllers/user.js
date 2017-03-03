@@ -3,28 +3,28 @@ const fileUpload = require('express-fileupload')
 
 let User = require('../models/user')
 let Gallery = require('../models/gallery')
-
-try {
-  let decoded = jwt.verify(token, 'This Shit is a fucking token')
-} catch(err) {
-  console.log(err);
-}
+//
+// try {
+//   let decoded = jwt.verify(token, 'This Shit is a fucking token')
+// } catch(err) {
+//   console.log(err);
+// }
 
 
 // Edit Controller
-function edit(req, res, next) {
-  User.findOne({_id : req.}, function(err, user) {
-    if(err) console.log(err);
-    else {
-      email : req.body.email,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      Dob: req.body.dob,
-      address: req.body.address
-      next()
-    }
-  })
-}
+// function edit(req, res, next) {
+//   User.findOne({_id : req.}, function(err, user) {
+//     if(err) console.log(err);
+//     else {
+//       email : req.body.email,
+//       firstname: req.body.firstname,
+//       lastname: req.body.lastname,
+//       Dob: req.body.dob,
+//       address: req.body.address
+//       next()
+//     }
+//   })
+// }
 
 function upload(req, res, next) {
   if(!req.files) {res.send("Please upload your fucking file")}
@@ -33,7 +33,8 @@ function upload(req, res, next) {
   gallery.create({
     title: req.body.title,
     story: req.body.story,
-    uploader: req.user._id
+    uploadAt: new Date,
+    uploader: '58b8e3efa33bee069beae98a'
   }, function(err, galleries) {
     if(err) console.log(err);
     else {
@@ -47,3 +48,5 @@ function upload(req, res, next) {
     }
   })
 }
+
+module.exports = {upload: upload}
