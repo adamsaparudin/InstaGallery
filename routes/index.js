@@ -6,17 +6,17 @@ let userController = require('../controllers/index')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('pages/index', { title: 'Express' });
 });
 
 router.get('/register', function(req, res, next) {
-  res.send("Register page")
+  res.render("pages/register")
 })
 
 router.post('/register', userController.register)
 
 router.get('/login', function(req, res, next) {
-  res.send("This shit is login page")
+  res.render("pages/login")
 })
 
 // This shit is doing different things. from passport authentication. set jwt and check jwt, req.token and other shit is okay.

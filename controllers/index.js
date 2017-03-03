@@ -7,9 +7,7 @@ function register(req, res, next) {
     password: req.body.password,
     email: req.body.email,
     firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    Dob: req.body.dob,
-    address: req.body.address
+    lastname: req.body.lastname
   }, function(err, user) {
     if(err) return error
     else {
