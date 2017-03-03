@@ -37,7 +37,7 @@ router.get('/user', function(req, res, next){
     if (err) {
       console.log(err);
     }else {
-      res.send(user)
+      res.render('admin',{title: "Admin Dashboard", data: user})
     }
   })
 })
@@ -45,7 +45,7 @@ router.get('/user', function(req, res, next){
 router.get('/user/:id', function(req, res, next){
   user.findById(req.params.id).then(function(user){
     //Halaman edit user
-    res.send("user is deleted")
+    res.render("admin_updt", {data: user})
   })
 })
 
@@ -56,7 +56,6 @@ router.post('/user/:id', function(req, res, next){
     email:req.body.email,
     firstname:req.body.firstname,
     lastname:req.body.lastname,
-    Dob:req.body.dob,
     address:req.body.address
   }}, function(err, user){
     if (err) {
