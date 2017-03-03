@@ -19,6 +19,10 @@ router.get('/login', function(req, res, next) {
   res.render("pages/login")
 })
 
+router.get('/register/instagram', function(req, res, next) {
+
+})
+
 // This shit is doing different things. from passport authentication. set jwt and check jwt, req.token and other shit is okay.
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),

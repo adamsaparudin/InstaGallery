@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const fileUpload = require('express-fileupload')
 
 let User = require('../models/user')
-let Gallery = require('../models/gallery')
+let gallery = require('../models/gallery')
 //
 // try {
 //   let decoded = jwt.verify(token, 'This Shit is a fucking token')
@@ -29,7 +29,7 @@ let Gallery = require('../models/gallery')
 function upload(req, res, next) {
   if(!req.files) {res.send("Please upload your fucking file")}
   // input type is file with name in the end
-  let file = req.files.sampleFiles
+  let file = req.files.imageUrl
   gallery.create({
     title: req.body.title,
     story: req.body.story,
@@ -38,10 +38,10 @@ function upload(req, res, next) {
   }, function(err, galleries) {
     if(err) console.log(err);
     else {
-      file.mv(`/public/uploadUser/${galleries._id}.jpg`, function(error) {
+      file.mv(`/Users/hacktiv8/Desktop/adams/project/InstaGallery/public/${galleries._id}.jpg`, function(error) {
         if(error) console.log("error from upload User", error);
         else {
-          Gallery.update({_id: galleries._id}, {imageUrl: `/public/uploadUser/${galleries._id}.jpg`})
+          req.galleryID = galleries._id
           next()
         }
       })
@@ -49,4 +49,14 @@ function upload(req, res, next) {
   })
 }
 
-module.exports = {upload: upload}
+function updateUpload(req, res, next) {
+  gallery.update({_id: req.galleryID}, {imageUrl: '/uploadUser/' + req.galleryID}, function(err){
+    if (err) {
+      console.log(err);
+    }else {
+      next()
+    }
+  })
+}
+
+module.exports = {upload: upload, updateUpload: updateUpload}

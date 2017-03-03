@@ -9,10 +9,11 @@ function register(req, res, next) {
     firstname: req.body.firstname,
     lastname: req.body.lastname
   }, function(err, user) {
-    if(err) return error
+    if(err) console.log(err);
     else {
       // render with register page, and add something like message or just put next
-      res.send("Success create User")
+      console.log("register success");
+      res.redirect('/')
     }
   })
 }
